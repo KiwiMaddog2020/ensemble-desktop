@@ -319,7 +319,7 @@
   <div class="wrap hero-inner">
     <p class="eyebrow">Phone Dispatch · Desktop Reference</p>
     <h1>Fire autopilot <em>missions</em> from anywhere.</h1>
-    <p class="lead">Your phone becomes a trigger panel. Termius sends an SSH command over Tailscale; your Mac spawns a bounded autopilot session, commits locally, and notifies when done. This page is the canonical reference, kept synced with your phone cheat sheet.</p>
+    <p class="lead">Termius over Tailscale → SSH command → Mac spawns a bounded autopilot session, commits locally, notifies when done.</p>
     <div class="meta">
       <span><span class="dot" aria-hidden="true"></span> host <code>100.107.120.85</code></span>
       <span>user <code>kevin</code></span>
@@ -331,15 +331,12 @@
 
 <section id="setup">
   <div class="wrap">
-    <p class="eyebrow">Setup — five taps in Termius</p>
+    <p class="eyebrow">Setup</p>
     <h2>Each snippet is created <em>once.</em></h2>
-    <p class="lead">Create each snippet below in Termius on your phone using the Copy buttons here. On desktop, copy is still useful — paste into your own notes, into a Raycast workflow, or into a shell.</p>
     <ol class="steps">
-      <li><strong>Snippets</strong> tab → tap <strong>+</strong>.</li>
-      <li>Name it with the label shown on the card.</li>
-      <li>Paste the script.</li>
-      <li>Save.</li>
-      <li>Fire: open the snippet → <strong>Send to host</strong> → pick your <strong>Ensemble Mac</strong>.</li>
+      <li><strong>Snippets</strong> tab → <strong>+</strong> → name it (use the card label).</li>
+      <li>Paste the script. Save.</li>
+      <li>Fire: open the snippet → <strong>Send to host</strong> → <strong>Ensemble Mac</strong>.</li>
     </ol>
   </div>
 </section>
@@ -348,7 +345,7 @@
   <div class="wrap">
     <p class="eyebrow">Duration presets</p>
     <h2>Default mission: <em>top recommendation.</em></h2>
-    <p class="lead">Three bounded autopilot sessions without a custom prompt. The agent reads its state files, picks the current top recommendation, commits locally within budget.</p>
+    <p class="lead">Bounded run, no custom prompt. Agent reads state files, picks top rec, commits within budget.</p>
 
     <div class="snip-grid">
       <div class="snip">
@@ -394,7 +391,7 @@
   <div class="wrap">
     <p class="eyebrow">Themed missions</p>
     <h2>Custom prompt, <em>timed.</em></h2>
-    <p class="lead">Each fires a bounded run with a specific kind of task. Safety rails still apply — local commits only, never pushes.</p>
+    <p class="lead">Bounded run, specific kind of task. Safety rails always apply.</p>
 
     <div class="snip-grid">
       <div class="snip">
@@ -483,7 +480,7 @@
           <div class="snip-title"><span class="bullet"></span>KILL — emergency stop</div>
           <div class="snip-tag">panic</div>
         </div>
-        <div class="snip-desc">Releases the autopilot lock immediately, kills in-flight sessions, drops the kill-switch signal for the Maestro's shutdown cascade. Safe to tap anytime.</div>
+        <div class="snip-desc">Releases lock, kills in-flight sessions, drops kill-switch signal. Safe to tap anytime.</div>
         <div class="snip-cmd-row">
           <pre class="snip-cmd">bash ~/.claude/orchestrator/bin/mobile_dispatch.sh kill</pre>
           <button class="snip-copy" type="button">Copy</button>
@@ -509,7 +506,7 @@
         <tr><td>Post-mortem log</td><td>Every run writes to <code>~/.claude/orchestrator/runs/autopilot-&lt;stamp&gt;.md</code> plus a raw <code>.raw.log</code>.</td></tr>
       </tbody>
     </table>
-    <div class="callout"><strong>The phone is the trigger, not the worker.</strong> Your phone just sends a ~100-byte SSH command and gets a one-line acknowledgment. All the work runs on your Mac. Battery-cheap, data-cheap, latency under a second over Tailscale.</div>
+    <div class="callout"><strong>The phone is the trigger, not the worker.</strong> ~100-byte SSH command out, one-line ack back. Mac does the work. Sub-second latency over Tailscale.</div>
   </div>
 </section>
 
@@ -524,7 +521,7 @@
           <div class="snip-title"><span class="bullet"></span>Inspect the latest autopilot run</div>
           <div class="snip-tag">Mac Terminal</div>
         </div>
-        <div class="snip-desc">See what the most recent session did, plus any new commits it landed. Paste this block into Terminal.</div>
+        <div class="snip-desc">Most recent session log + new commits it landed.</div>
         <div class="snip-cmd-row">
           <pre class="snip-cmd">cd ~/.claude/orchestrator
 ls -lat runs/ | head -5
